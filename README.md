@@ -2,8 +2,6 @@
 
 These scripts make it easier to build from the command line and to create and update PR's with Github. They facilitates a [stacked diff workflow](https://kastiglione.github.io/git/2020/09/11/git-stacked-commits.html), where you always commit on `main` branch and have can have multiple streams of work all on `main`.
 
-Join the discussion in [#devel-stacked-diff-workflow](https://slack-pde.slack.com/archives/C03V94N2A84)
-
 Note: these scripts do *not* facilitate Stacked *Pull Requests*. Github does some things that add friction to using Stacked PR's, even with support from third party software. For example, after merging one of the PR's in the stack, you may require a re-review of the other PR's in the stack. Instead, it's recommended to organize your PR's, as much as reasonably possible, so that they can be all be rebased against main at the same time. When there are dependencies, wait for dependant PR to be merged before putting up the next one. You may find that often you are still working on the next commit while the other is being reviewed/merged.
 
 ## TL;DR
@@ -97,20 +95,6 @@ Use during rebase of main branch to use the contents of a feature branch that al
 
 Add one or more commits to a PR.
 
-### To Help You Build
-
-#### assemble-app
-
-`assemble-app`
-
-Calls `./gradlew assembleInternalDebug` and build tests. Use "-s" (silent) flag to not use voice (`say`) to announce success/failure.
-
-#### install-app
-
-`install-app`
-
-Calls `./gradlew assembleInternalDebug` and install on real device. Use "-s" (silent) flag to not use voice (`say`) to announce success/failure.
-
 ### To Help with Github
 
 #### add-reviewers
@@ -184,25 +168,4 @@ replace-head
 # continue with the rebase
 git add . && git rebase --continue
 # All done... now both the feature branch and your local main are rebased with main, and the merge conflicts only had to be fixed once
-```
-
-## Migration from create-symlinks
-
-The pre 1.0 version of these scripts use symlinks. They are no longer required with 1.0+.
-
-```
-rm /usr/local/bin/full-assemble
-rm /usr/local/bin/assemble
-rm /usr/local/bin/git-updatepr
-rm /usr/local/bin/git-newpr
-rm /usr/local/bin/installapp
-rm /usr/local/bin/gitlog
-rm /usr/local/bin/git-amendpr
-rm /usr/local/bin/git-reset-main
-rm /usr/local/bin/git-prs
-rm /usr/local/bin/git-review
-rm /usr/local/bin/git-merge-pr
-rm /usr/local/bin/squash-commits.go
-rm /usr/local/bin/git-get-commit-branch
-rm /usr/local/bin/git-checkout
 ```
